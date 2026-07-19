@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>E-Millenial Store — Gadgets for Every Generation</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="captone.css" />
+  <script defer src="captone.js"></script>
+</head>
+
+<body>
+  <header>
+    <nav class="navContainer">
+      <img src="/images/EMS.svg" alt="E-Millenial Store logo" class="logo" />
+      <ul class="nav-linksConta">
+        <li><a class="active" href="#intro">Intro</a></li>
+        <li><a href="#about">About Us</a></li>
+        <li><a href="#procductSec">Shop</a></li>
+      </ul>
+      <div class="spanCartIcon">
+        <button id="addtc" aria-label="Open cart">
+          <img src="/images/cart.svg" alt="" />
+        </button>
+        <span id="itemCounter">0</span>
+      </div>
+    </nav>
+  </header>
+  
+  <main id="main">
+    <!-- Intro section -->
+    <section id="intro" class="intro-Container">
+      <div class="heroTxt-heroImg">
+        <h2>THE E-MILLENIAL STORE</h2>
+        <img src="/images/heroImage.png" alt="Featured gadget collection" />
+      </div>
+      <a id="shopNow" href="#procductSec">Shop Now</a>
+    </section>
+    
+    <!-- About section -->
+    <section id="about" class="about-section">
+      <p>
+        E-Millenial Store is a hypothetical online store for gadgets we believe every
+        Millennial or Gen Z should have today. We've got mobile phones, laptops,
+        smartwatches, and other gadgets. Explore all our gadgets and choose the ones
+        that suit you.
+      </p>
+    </section>
+    
+    <!-- Product grid: JS appends product cards here -->
+    <section id="procductSec" class="gridContainer">
+      <h1>OUR GADGETS</h1>
+    </section>
+    
+    <!-- Cart panel -->
+    <section id="addCartItem">
+      <button id="closeCart" aria-label="Close cart">❌</button>
+      
+      <table>
+        <thead>
+          <tr class="tableHead">
+            <th>S/N</th>
+            <th>Item</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody id="cartItemsBody">
+          <!-- JS renders cart rows here -->
+        </tbody>
+      </table>
+      
+      <form action="" method="get" accept-charset="utf-8">
+        <label for="custName">Your name</label>
+        <input type="text" name="custName" id="custName" placeholder="Your name" />
+        <label for="custEmail">Your e-mail</label>
+        <input type="email" name="custEmail" id="custEmail" placeholder="Your e-mail" />
+        <label for="custPhone">Your number</label>
+        <input type="tel" name="custPhone" id="custPhone" placeholder="Your number" />
+      </form>
+      
+      <div id="totalCard">
+        <h3>Total Amount to be paid: <span id="cartTotal">$0.00</span></h3>
+        <button id="tinueshop">Continue Shopping</button>
+        <button id="chckout">Check out</button>
+      </div>
+    </section>
+  </main>
+  
+  <footer class="footer">
+    <img src="/images/EMS.svg" alt="logo" />
+    <p><span>©</span>️ Designed and crafted by Java Bone Foundation</p>
+  </footer>
+</body>
+
+</html>
