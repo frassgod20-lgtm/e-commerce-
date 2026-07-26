@@ -88,7 +88,7 @@ function payWithPaystack(userDetails) {
     ref: 'ref_' + Math.floor((Math.random() * 1000000000) + 1), // Generate a unique reference
     callback: function (response) {
       console.log("response", response)
-      showSummary();
+      showSummary(userDetails.custName);
       cart = [];
       renderCart(cart);
     },
@@ -250,13 +250,13 @@ checkoutForm.addEventListener("submit", (event) => {
 
 
 
-function showSummary() {
+function showSummary(custName) {
   addCartPanel.classList.remove("show");
-summaryOverlay.classList.add("active");
-  summaryContainer.innerHTML = cart.map((item, index) => `
-<section id="showSummary">
-      <h3>Thank You, Chucks Your order has been Received</h3>
-      <div>
+  summaryOverlay.classList.add("active");
+  summaryContainer.innerHTML = `
+    <section class="summary-content">
+      <h3>Thank You, ${custName} Your order has been Received</h3>
+      <div class="summary-header">
         <img src="images/check.svg" alt="check SVG">
         <h1>Summary</h1>
       </div>
@@ -267,22 +267,24 @@ summaryOverlay.classList.add("active");
             <th>Item</th>
             <th>Price</th>
             <th>Quantity</th>
-            <th></th>
           </tr>
         </thead>
-        <tbody id="cartItemsBody">
-          <tr class="tableItems">
-      <td>${index + 1}</td>
-      <td>${item.name}</td>
-      <td>$${formatMoney(item.price)}</td>
-    </tr>
+        <tbody>
+          ${cart.map((item, index) => `
+            <tr class="tableItems">
+              <td>${index + 1}</td>
+              <td>${item.name}</td>
+              <td>$${formatMoney(item.price)}</td>
+              <td>${item.quantity}</td>
+            </tr>
+          `).join("")}
         </tbody>
       </table>
-      <div id="totalCard">
-        <h3>Total Amount to be paid: <span id="cartTotal">${getCartTotal()}</span></h3>
+      <div class="summary-total">
+        <h3>Total Amount to be paid: $${formatMoney(getCartTotal())}</h3>
       </div>
     </section>
-  `).join("");
+  `;
 }
 
 // Init

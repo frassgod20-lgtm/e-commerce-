@@ -288,6 +288,43 @@ body {
   border-radius: 8px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
   z-index: 1000;
+  padding: 2rem;
+}
+
+.summary-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.summary-content {
+  text-align: center;
+}
+
+.summary-content h3 {
+  font-size: var(--font-lg);
+  margin-bottom: 1rem;
+}
+
+.summary-content h1 {
+  font-size: var(--font-2xl);
+  color: var(--primary-color);
+}
+
+.summary-content > div img {
+  width: 40px;
+}
+
+.summary-total {
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 2px solid var(--border-color);
+}
+
+.summary-total h3 {
+  font-size: var(--font-xl);
+  color: var(--primary-dark);
 }
 
 #closeCart {
