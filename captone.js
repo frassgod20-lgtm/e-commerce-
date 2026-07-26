@@ -22,6 +22,17 @@ const cartItemsBody = document.getElementById("cartItemsBody");
 const cartTotalEl = document.getElementById("cartTotal");
 const continueShopBtn = document.getElementById("tinueshop");
 const checkoutBtn = document.getElementById("chckout");
+const checkoutForm = document.getElementById("checkoutForm")
+const summaryOverlay = document.getElementById("summary-overlay")
+
+
+
+
+const summaryContainer = document.getElementById("summary-container")
+// const showSummary = document.getElementById("showSummary")
+
+
+
 
 // Render the product grid into the existing #procductSec section
 function renderProducts() {
@@ -40,6 +51,22 @@ function renderProducts() {
   productSection.insertAdjacentHTML("beforeend", markup);
 }
 
+function renderCartItems() {
+  const markup = cart.map((p) => `
+    <div class="" data-id="${p.id}">
+      <div class="">
+        <img src="${p.image}" alt="Image of ${p.name}" />
+        <div class="">
+          <h1>$${p.price}</h1>
+        </div>
+      </div>
+      <h1>${p.name}</h1>
+    </div>
+  `).join("");
+  productSection.insertAdjacentHTML("beforeend", markup);
+}
+
+
 function formatMoney(n) {
   return n.toFixed(2);
 }
@@ -50,6 +77,28 @@ function getCartTotal() {
 
 function getCartItemCount() {
   return cart.reduce((sum, item) => sum + item.quantity, 0);
+}
+
+const publicKey = "pk_test_af53284831a3fa6cd7e3a81ebecd783edf7804dd";
+
+function payWithPaystack(userDetails) {
+  let handler = PaystackPop.setup({
+    key: publicKey,
+    email: userDetails.userEmail,
+    amount: getCartTotal() * 100,
+    currency: "GHS",
+    ref: 'ref_' + Math.floor((Math.random() * 1000000000) + 1), // Generate a unique reference
+    callback: function (response) {
+      // alert("Payment complete!", userDetails);
+      console.log("response", response)
+      showSummary()
+      // TODO: Verify transaction on your server
+    },
+    onClose: function (error) {
+      alert("Payment failed. User did not complete the process");
+    }
+  });
+  handler.openIframe();
 }
 
 // Re-render the cart table, to look tal, and badge from the current `cart` state
@@ -127,15 +176,15 @@ productSection.addEventListener("click", (event) => {
     addToCart(id);
     button.textContent = "Remove from cart";
   }
-  if(existingCartItem){
-  removeFromCart(cart, existingCartItem)
-  button.textContent = "Add to cart";
+  if (existingCartItem) {
+    removeFromCart(cart, existingCartItem)
+    button.textContent = "Add to cart";
   }
   return
 });
 
 const removeFromCart = (cart, cartItem) => {
-  console.log("item",cartItem )
+  console.log("item", cartItem)
   const itemIndex = cart.findIndex((item) => item.id === cartItem.id)
   console.log("itemIndex", itemIndex)
   if (itemIndex === -1) {
@@ -174,14 +223,71 @@ continueShopBtn.addEventListener("click", () => {
   addCartPanel.classList.remove("show");
 });
 
-checkoutBtn.addEventListener("click", () => {
+checkoutForm.addEventListener("submit", (event) => {
+  event.preventDefault()
+  const userEmail = checkoutForm.custEmail.value
+  const custName = checkoutForm.custName.value
+  const custPhone = checkoutForm.custPhone.value
+
+
+  console.log("event", {
+    userEmail,
+    custName,
+    custPhone
+  })
+
   if (cart.length === 0) {
     alert("Your cart is empty.");
     return;
   }
-  alert(`Thank you for your order! Your total is $${formatMoney(getCartTotal())}.`);
+
+  const userDetails = {
+    userEmail,
+    custName,
+    custPhone
+  }
+  // getCartTotal()
+  payWithPaystack(userDetails)
 });
+
+
+
+function showSummary() {
+  addCartPanel.classList.remove("show");
+summaryOverlay.classList.add("active");
+  summaryContainer.innerHTML = cart.map((item, index) => `
+<section id="showSummary">
+      <h3>Thank You, Chucks Your order has been Received</h3>
+      <div>
+        <img src="images/check.svg" alt="check SVG">
+        <h1>Summary</h1>
+      </div>
+      <table>
+        <thead>
+          <tr class="tableHead">
+            <th>S/N</th>
+            <th>Item</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody id="cartItemsBody">
+          <tr class="tableItems">
+      <td>${index + 1}</td>
+      <td>${item.name}</td>
+      <td>$${formatMoney(item.price)}</td>
+    </tr>
+        </tbody>
+      </table>
+      <div id="totalCard">
+        <h3>Total Amount to be paid: <span id="cartTotal">${getCartTotal()}</span></h3>
+      </div>
+    </section>
+  `).join("");
+}
 
 // Init
 renderProducts();
 renderCart(cart);
+showSummary()
