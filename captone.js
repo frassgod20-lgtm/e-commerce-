@@ -259,6 +259,7 @@ function showSummary(custName) {
         <img src="images/check.svg" alt="check SVG">
         <h3>Thank You, ${custName} Your order has been Received</h3>
       </div>
+      <h2>Summary</h2>
       <table>
         <thead>
           <tr class="tableHead">
