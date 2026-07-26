@@ -87,10 +87,10 @@ function payWithPaystack(userDetails) {
     currency: "GHS",
     ref: 'ref_' + Math.floor((Math.random() * 1000000000) + 1), // Generate a unique reference
     callback: function (response) {
-      // alert("Payment complete!", userDetails);
       console.log("response", response)
-      showSummary()
-      // TODO: Verify transaction on your server
+      showSummary();
+      cart = [];
+      renderCart(cart);
     },
     onClose: function (error) {
       alert("Payment failed. User did not complete the process");
