@@ -255,10 +255,9 @@ function showSummary(custName) {
   summaryOverlay.classList.add("active");
   summaryContainer.innerHTML = `
     <section class="summary-content">
-      <h3>Thank You, ${custName} Your order has been Received</h3>
       <div class="summary-header">
         <img src="images/check.svg" alt="check SVG">
-        <h1>Summary</h1>
+        <h3>Thank You, ${custName} Your order has been Received</h3>
       </div>
       <table>
         <thead>
