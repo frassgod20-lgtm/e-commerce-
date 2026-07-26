@@ -24,13 +24,15 @@ const continueShopBtn = document.getElementById("tinueshop");
 const checkoutBtn = document.getElementById("chckout");
 const checkoutForm = document.getElementById("checkoutForm")
 const summaryOverlay = document.getElementById("summary-overlay")
-const summaryContainer = document.getElementById("summary-container")
 
-summaryOverlay.addEventListener("click", (e) => {
-  if (e.target === summaryOverlay) {
-    summaryOverlay.classList.remove("active");
-  }
-});
+
+
+
+const summaryContainer = document.getElementById("summary-container")
+// const showSummary = document.getElementById("showSummary")
+
+
+
 
 // Render the product grid into the existing #procductSec section
 function renderProducts() {
@@ -252,10 +254,10 @@ checkoutForm.addEventListener("submit", (event) => {
 
 function showSummary() {
   addCartPanel.classList.remove("show");
-  summaryOverlay.classList.add("active");
-  summaryContainer.innerHTML = `
-    <section class="summary-content">
-      <h3>Thank You, Your order has been Received</h3>
+summaryOverlay.classList.add("active");
+  summaryContainer.innerHTML = cart.map((item, index) => `
+<section id="showSummary">
+      <h3>Thank You, Chucks Your order has been Received</h3>
       <div>
         <img src="images/check.svg" alt="check SVG">
         <h1>Summary</h1>
@@ -267,24 +269,22 @@ function showSummary() {
             <th>Item</th>
             <th>Price</th>
             <th>Quantity</th>
+            <th></th>
           </tr>
         </thead>
-        <tbody>
-          ${cart.map((item, index) => `
-            <tr class="tableItems">
-              <td>${index + 1}</td>
-              <td>${item.name}</td>
-              <td>$${formatMoney(item.price)}</td>
-              <td>${item.quantity}</td>
-            </tr>
-          `).join("")}
+        <tbody id="cartItemsBody">
+          <tr class="tableItems">
+      <td>${index + 1}</td>
+      <td>${item.name}</td>
+      <td>$${formatMoney(item.price)}</td>
+    </tr>
         </tbody>
       </table>
-      <div class="summary-total">
-        <h3>Total Amount: $${formatMoney(getCartTotal())}</h3>
+      <div id="totalCard">
+        <h3>Total Amount to be paid: <span id="cartTotal">${getCartTotal()}</span></h3>
       </div>
     </section>
-  `;
+  `).join("");
 }
 
 // Init

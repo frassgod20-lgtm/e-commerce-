@@ -264,9 +264,9 @@ body {
   width: 100%;
   height: 100%;
   background: rgba(0, 0, 0, 0.5);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+   display: flex;
+  /* align-items: center; */
+  justify-content: center; 
   z-index: 999;
   opacity: 0;
   visibility: hidden;
@@ -281,52 +281,13 @@ body {
 #summary-container {
   position: relative;
   width: 90%;
-  max-width: 600px;
+  max-width: 90%;
   max-height: 80vh;
   overflow-y: auto;
   background: #fff;
   border-radius: 8px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
   z-index: 1000;
-  padding: 2rem;
-}
-
-.summary-content {
-  text-align: center;
-}
-
-.summary-content h3 {
-  font-size: var(--font-lg);
-  color: #333;
-  margin-bottom: 1rem;
-}
-
-.summary-content h1 {
-  font-size: var(--font-2xl);
-  color: var(--primary-color);
-}
-
-.summary-content > div {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 1rem;
-  margin-bottom: 1.5rem;
-}
-
-.summary-content > div img {
-  width: 40px;
-}
-
-.summary-total {
-  margin-top: 1.5rem;
-  padding-top: 1rem;
-  border-top: 2px solid var(--border-color);
-}
-
-.summary-total h3 {
-  font-size: var(--font-xl);
-  color: var(--primary-dark);
 }
 
 #closeCart {
