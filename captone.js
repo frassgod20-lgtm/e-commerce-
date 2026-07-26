@@ -290,4 +290,3 @@ summaryOverlay.classList.add("active");
 // Init
 renderProducts();
 renderCart(cart);
-showSummary()
