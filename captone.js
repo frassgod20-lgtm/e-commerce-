@@ -24,15 +24,13 @@ const continueShopBtn = document.getElementById("tinueshop");
 const checkoutBtn = document.getElementById("chckout");
 const checkoutForm = document.getElementById("checkoutForm")
 const summaryOverlay = document.getElementById("summary-overlay")
-
-
-
-
 const summaryContainer = document.getElementById("summary-container")
-// const showSummary = document.getElementById("showSummary")
 
-
-
+summaryOverlay.addEventListener("click", (e) => {
+  if (e.target === summaryOverlay) {
+    summaryOverlay.classList.remove("active");
+  }
+});
 
 // Render the product grid into the existing #procductSec section
 function renderProducts() {
@@ -89,10 +87,10 @@ function payWithPaystack(userDetails) {
     currency: "GHS",
     ref: 'ref_' + Math.floor((Math.random() * 1000000000) + 1), // Generate a unique reference
     callback: function (response) {
-      // alert("Payment complete!", userDetails);
       console.log("response", response)
-      showSummary()
-      // TODO: Verify transaction on your server
+      showSummary(userDetails.custName);
+      cart = [];
+      renderCart(cart);
     },
     onClose: function (error) {
       alert("Payment failed. User did not complete the process");
@@ -252,16 +250,16 @@ checkoutForm.addEventListener("submit", (event) => {
 
 
 
-function showSummary() {
+function showSummary(custName) {
   addCartPanel.classList.remove("show");
-summaryOverlay.classList.add("active");
-  summaryContainer.innerHTML = cart.map((item, index) => `
-<section id="showSummary">
-      <h3>Thank You, Chucks Your order has been Received</h3>
-      <div>
+  summaryOverlay.classList.add("active");
+  summaryContainer.innerHTML = `
+    <section class="summary-content">
+      <div class="summary-header">
         <img src="images/check.svg" alt="check SVG">
-        <h1>Summary</h1>
+        <h3>Thank You, ${custName} Your order has been Received</h3>
       </div>
+      <h2>Summary</h2>
       <table>
         <thead>
           <tr class="tableHead">
@@ -269,22 +267,24 @@ summaryOverlay.classList.add("active");
             <th>Item</th>
             <th>Price</th>
             <th>Quantity</th>
-            <th></th>
           </tr>
         </thead>
-        <tbody id="cartItemsBody">
-          <tr class="tableItems">
-      <td>${index + 1}</td>
-      <td>${item.name}</td>
-      <td>$${formatMoney(item.price)}</td>
-    </tr>
+        <tbody>
+          ${cart.map((item, index) => `
+            <tr class="tableItems">
+              <td>${index + 1}</td>
+              <td>${item.name}</td>
+              <td>$${formatMoney(item.price)}</td>
+              <td>${item.quantity}</td>
+            </tr>
+          `).join("")}
         </tbody>
       </table>
-      <div id="totalCard">
-        <h3>Total Amount to be paid: <span id="cartTotal">${getCartTotal()}</span></h3>
+      <div class="summary-total">
+        <h3>Total Amount to be paid: $${formatMoney(getCartTotal())}</h3>
       </div>
     </section>
-  `).join("");
+  `;
 }
 
 // Init

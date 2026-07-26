@@ -173,8 +173,8 @@ body {
 }
 
 .heroTxt-heroImg{
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   align-items: center;
   padding: 1rem;
   gap: 50px;
@@ -182,10 +182,8 @@ body {
 }
 
 .heroTxt-heroImg h2{
-  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
   font-size: 4rem;
   font-weight: 700;
-  flex: 1 1 3rem;
   line-height: 1.5;
   text-align: start;
   color: #FF7A00;
@@ -288,6 +286,43 @@ body {
   border-radius: 8px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
   z-index: 1000;
+  padding: 2rem;
+}
+
+.summary-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.summary-content {
+  text-align: center;
+}
+
+.summary-content h3 {
+  font-size: var(--font-lg);
+  margin-bottom: 1rem;
+}
+
+.summary-content h1 {
+  font-size: var(--font-2xl);
+  color: var(--primary-color);
+}
+
+.summary-content > div img {
+  width: 40px;
+}
+
+.summary-total {
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 2px solid var(--border-color);
+}
+
+.summary-total h3 {
+  font-size: var(--font-xl);
+  color: var(--primary-dark);
 }
 
 #closeCart {
@@ -306,7 +341,7 @@ body {
   visibility: visible;
 }
 
-table {
+#addCartItem table {
   width: 100%;
   border-collapse: collapse;
   margin: 6px 0;
@@ -316,22 +351,42 @@ table {
   flex-direction: column;
 }
 
-thead, tbody, tr {
+#addCartItem thead,
+#addCartItem tbody,
+#addCartItem tr {
   display: table;
   width: 100%;
   table-layout: fixed;
 }
-.btnSpan
-th,
-td {
+
+#addCartItem th,
+#addCartItem td {
   padding: 12px;
   text-align: center;
   font-size: 2rem;
 }
 
-.tableHead{
- display: table-row;
+.summary-content table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
 }
+
+.summary-content th,
+.summary-content td {
+  padding: 8px;
+  text-align: left;
+  font-size: 1.4rem;
+}
+
+.summary-content th {
+  border-bottom: 2px solid var(--border-color);
+  font-weight: 600;
+}
+
+/* .tableHead{
+ display: table-row;
+} */
 
 th {
   font-size: 2rem;
@@ -569,11 +624,11 @@ input{
   height: auto;
 }
 
-.tableItems{
+/* .tableItems{
   display: flex;
   align-items: center;
   justify-content: start;
-}
+} */
 
 /*///////////////////////////*/
 /*///////////////////////////*/
