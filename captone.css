@@ -369,21 +369,25 @@ body {
 }
 
 .summary-content table {
-  width: 100%;
+  font-family: "Poppins", sans-serif;
   border-collapse: collapse;
-  table-layout: fixed;
+  width: 100%;
 }
 
 .summary-content th,
 .summary-content td {
-  padding: 8px;
+  border: 1px solid #dddddd;
   text-align: left;
+  padding: 8px;
   font-size: 1.4rem;
 }
 
 .summary-content th {
-  border-bottom: 2px solid var(--border-color);
   font-weight: 600;
+}
+
+.summary-content tr:nth-child(even) {
+  background-color: #f2f2f2;
 }
 
 .tableHead{
@@ -764,5 +768,32 @@ td span {
   gap: 3rem;
   justify-items: center;
   align-items: center;
+}
+
+#summary-container {
+  width: 95%;
+  padding: 1.5rem;
+}
+
+.summary-content h1 {
+  font-size: var(--font-xl);
+}
+
+.summary-content h3 {
+  font-size: var(--font-md);
+}
+
+.summary-content th,
+.summary-content td {
+  font-size: 1.2rem;
+  padding: 6px;
+}
+
+.summary-total h3 {
+  font-size: var(--font-lg);
+}
+
+.summary-header img {
+  width: 30px;
 }
 }
