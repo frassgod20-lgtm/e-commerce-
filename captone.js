@@ -24,15 +24,13 @@ const continueShopBtn = document.getElementById("tinueshop");
 const checkoutBtn = document.getElementById("chckout");
 const checkoutForm = document.getElementById("checkoutForm")
 const summaryOverlay = document.getElementById("summary-overlay")
-
-
-
-
 const summaryContainer = document.getElementById("summary-container")
-// const showSummary = document.getElementById("showSummary")
 
-
-
+summaryOverlay.addEventListener("click", (e) => {
+  if (e.target === summaryOverlay) {
+    summaryOverlay.classList.remove("active");
+  }
+});
 
 // Render the product grid into the existing #procductSec section
 function renderProducts() {
