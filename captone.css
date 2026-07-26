@@ -343,7 +343,7 @@ body {
   visibility: visible;
 }
 
-table {
+#addCartItem table {
   width: 100%;
   border-collapse: collapse;
   margin: 6px 0;
@@ -353,17 +353,37 @@ table {
   flex-direction: column;
 }
 
-thead, tbody, tr {
+#addCartItem thead,
+#addCartItem tbody,
+#addCartItem tr {
   display: table;
   width: 100%;
   table-layout: fixed;
 }
-.btnSpan
-th,
-td {
+
+#addCartItem th,
+#addCartItem td {
   padding: 12px;
   text-align: center;
   font-size: 2rem;
+}
+
+.summary-content table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+.summary-content th,
+.summary-content td {
+  padding: 8px;
+  text-align: left;
+  font-size: 1.4rem;
+}
+
+.summary-content th {
+  border-bottom: 2px solid var(--border-color);
+  font-weight: 600;
 }
 
 .tableHead{
