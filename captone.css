@@ -173,8 +173,8 @@ body {
 }
 
 .heroTxt-heroImg{
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   align-items: center;
   padding: 1rem;
   gap: 50px;
@@ -182,10 +182,8 @@ body {
 }
 
 .heroTxt-heroImg h2{
-  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
   font-size: 4rem;
   font-weight: 700;
-  flex: 1 1 3rem;
   line-height: 1.5;
   text-align: start;
   color: #FF7A00;
@@ -386,9 +384,9 @@ body {
   font-weight: 600;
 }
 
-.tableHead{
+/* .tableHead{
  display: table-row;
-}
+} */
 
 th {
   font-size: 2rem;
@@ -626,11 +624,11 @@ input{
   height: auto;
 }
 
-.tableItems{
+/* .tableItems{
   display: flex;
   align-items: center;
   justify-content: start;
-}
+} */
 
 /*///////////////////////////*/
 /*///////////////////////////*/
