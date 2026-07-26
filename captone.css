@@ -257,6 +257,39 @@ body {
   box-shadow: 0 4px 5px rgba(0, 0, 0, 0.3);
 }
 
+#summary-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+   display: flex;
+  /* align-items: center; */
+  justify-content: center; 
+  z-index: 999;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s ease, visibility 0.2s ease;
+}
+
+#summary-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+#summary-container {
+  position: relative;
+  width: 90%;
+  max-width: 90%;
+  max-height: 80vh;
+  overflow-y: auto;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+  z-index: 1000;
+}
+
 #closeCart {
   position: absolute;
   top: 10px;
